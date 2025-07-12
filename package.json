@@ -1,0 +1,48 @@
+{
+  "name": "vite-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint --fix",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@heroui/react": "^2.7.11",
+    "@react-aria/visually-hidden": "3.8.25",
+    "@react-types/shared": "3.30.0",
+    "@tanstack/react-query": "^5.83.0",
+    "clsx": "2.1.1",
+    "framer-motion": "11.15.0",
+    "iconoir-react": "^7.11.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.23.0",
+    "tailwind-variants": "0.3.0",
+    "tailwindcss": "3.4.16"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.7",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "8.31.1",
+    "@typescript-eslint/parser": "8.31.1",
+    "@vitejs/plugin-react": "4.4.1",
+    "autoprefixer": "10.4.21",
+    "eslint": "9.25.1",
+    "globals": "16.0.0",
+    "msw": "^2.10.4",
+    "postcss": "8.5.3",
+    "prettier": "3.5.3",
+    "typescript": "5.6.3",
+    "vite": "5.2.0",
+    "vite-tsconfig-paths": "4.3.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

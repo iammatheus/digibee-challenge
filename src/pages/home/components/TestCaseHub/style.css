@@ -1,0 +1,25 @@
+div {
+  [data-slot='input-wrapper'] {
+    background: transparent !important;
+
+    &:hover {
+      background-color: transparent;
+      border-color: #333;
+    }
+  }
+
+  [focus-visible] {
+    outline: none !important;
+  }
+
+  ul[data-slot='listbox'] {
+    background: transparent !important;
+    &:hover {
+      background: transparent !important;
+    }
+  }
+
+  button[data-slot='trigger'] {
+    background: transparent !important;
+  }
+}
