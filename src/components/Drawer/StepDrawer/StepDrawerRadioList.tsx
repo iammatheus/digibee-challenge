@@ -1,20 +1,24 @@
 import { BoxRadioForm } from '@/components/Form/BoxRadioForm'
-import { RadioGroup } from '@heroui/react'
+import { RadioGroup, RadioGroupProps } from '@heroui/react'
 
 import tagMock from '../../../assets/tag-mock.svg'
+import { IItemsMockResponses } from '@/api/interfaces/IMockResponses'
 
-interface StepDrawerRadioListProps {
-  steps: any[]
+type StepDrawerRadioListProps = RadioGroupProps & {
+  steps: IItemsMockResponses[]
 }
 
-export function StepDrawerRadioList({ steps }: StepDrawerRadioListProps) {
+export function StepDrawerRadioList({
+  steps,
+  ...props
+}: StepDrawerRadioListProps) {
   return (
     <>
-      <RadioGroup key="stepDrawer" size="sm" color="default">
+      <RadioGroup key="stepDrawer" size="sm" color="default" {...props}>
         {steps?.map((step) => {
           return (
             <div
-              className="border-1 border-gray-200 hover:border-gray-900 transition flex items-start"
+              className="border-1 border-gray-200 rounded-lg hover:border-gray-900 transition flex items-start"
               key={step.id}
             >
               <div className="ml-4 mt-6">
@@ -23,7 +27,7 @@ export function StepDrawerRadioList({ steps }: StepDrawerRadioListProps) {
               <div className="w-[100%]">
                 <BoxRadioForm
                   description={step.date}
-                  value={step.name}
+                  value={String(step.id)}
                   key={step.id}
                   className="w-[100%] border-0 hover:bg-transparent"
                   classNames={{

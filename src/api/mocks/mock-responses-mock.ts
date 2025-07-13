@@ -15,12 +15,12 @@ export const mockResponsesMock = http.get<never, never, IMockResponses[]>(
         items: [
           {
             id: 1,
-            name: 'Mocked name #1',
+            name: 'Mock name #1',
             date: 'Created at 2 dec, 2024',
           },
           {
             id: 2,
-            name: 'Mocked name #2',
+            name: 'Mock name #2',
             date: 'Created at 2 dec, 2024',
           },
         ],
@@ -32,12 +32,12 @@ export const mockResponsesMock = http.get<never, never, IMockResponses[]>(
         items: [
           {
             id: 1,
-            name: 'Mocked name #1',
+            name: 'Mock name #1',
             date: 'Created at 2 dec, 2024',
           },
           {
             id: 2,
-            name: 'Mocked name #2',
+            name: 'Mock name #2',
             date: 'Created at 2 dec, 2024',
           },
         ],
@@ -49,12 +49,12 @@ export const mockResponsesMock = http.get<never, never, IMockResponses[]>(
         items: [
           {
             id: 1,
-            name: 'Mocked name #1',
+            name: 'Mock name #1',
             date: 'Created at 2 dec, 2024',
           },
           {
             id: 2,
-            name: 'Mocked name #2',
+            name: 'Mock name #2',
             date: 'Created at 2 dec, 2024',
           },
         ],
