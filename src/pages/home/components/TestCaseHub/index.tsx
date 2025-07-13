@@ -1,7 +1,7 @@
 import { Drawer } from '@/components/Drawer'
 import { ITestCaseDrawer } from '../../interface/ITestCaseDrawer'
 import { Xmark, Book } from 'iconoir-react'
-import { Button, Input, Select, SelectItem } from '@heroui/react'
+import { Button, Select, SelectItem } from '@heroui/react'
 import { BoxForm } from '@/components/Form/BoxForm'
 import { SwitchToggle } from '@/components/SwitchToggle'
 
@@ -9,8 +9,12 @@ import { StepMockResponses } from '../DefineConditions/components/StepMockRespon
 import { StepPayload } from '../DefineConditions/components/StepPayload'
 import { StepExpectResults } from '../DefineConditions/components/ExpectResults'
 import { StepPaths } from '../DefinePath/components/Paths'
-import './style.css'
 import { InputForm } from '@/components/Form/InputForm'
+import { StepCaseContext } from '../../contexts/TestCaseContext'
+import { useContext } from 'react'
+
+import './style.css'
+import { StepSelected } from '@/components/Drawer/StepSelected'
 
 type TestCaseHubProps = {
   hub: ITestCaseDrawer
@@ -28,6 +32,11 @@ export function TestCaseHub({
   paths,
 }: TestCaseHubProps) {
   const { onOpenChange, isOpen, onClose } = hub
+  const { steps, handleRemoveStep } = useContext(StepCaseContext)
+
+  function handleRemoveStepMockResponses(id: number): void {
+    handleRemoveStep(id)
+  }
 
   return (
     <>
@@ -100,6 +109,34 @@ export function TestCaseHub({
                   description="Create or use a saved mock"
                   onOpen={step.onOpen}
                 />
+
+                <>
+                  {steps.map((stepItem) => {
+                    return (
+                      <StepSelected.Root>
+                        <StepSelected.Info
+                          icon={stepItem.icon}
+                          name={stepItem.name}
+                          description={stepItem.description}
+                        />
+
+                        <StepSelected.Delete
+                          onDelete={() =>
+                            handleRemoveStepMockResponses(
+                              stepItem.idItemMockResponse,
+                            )
+                          }
+                        />
+                      </StepSelected.Root>
+                    )
+                  })}
+                  {steps.length > 0 && (
+                    <StepSelected.AddNew
+                      onPress={step.onOpen}
+                      text="Add new mock"
+                    />
+                  )}
+                </>
 
                 <BoxForm
                   title="Expect Results"

@@ -2,8 +2,9 @@ import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
 import { Button, Divider, SharedSelection } from '@heroui/react'
 import { getMockResponsesMock } from '@/api/mocks/mock-responses-mock'
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
+import { StepCaseContext } from '@/pages/home/contexts/TestCaseContext'
 
 type TestCaseStepProps = {
   step: ITestCaseDrawer
@@ -11,7 +12,9 @@ type TestCaseStepProps = {
 
 export function StepMockResponses({ step }: TestCaseStepProps) {
   const { onOpenChange, isOpen, onClose } = step
-  const [selectItem, setSelectItem] = useState<any[]>([])
+  const [stepMockResponse, setStepMockResponse] = useState<any[]>([])
+
+  const { handleAddStep } = useContext(StepCaseContext)
 
   const { data: mockResponses } = useQuery({
     queryKey: ['mockResponses'],
@@ -23,12 +26,28 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
       (response) => response.id === Number(item.currentKey),
     )
 
-    setSelectItem(filteredItem!)
+    setStepMockResponse(filteredItem!)
   }
 
   function handleClose() {
-    setSelectItem([])
+    setStepMockResponse([])
     onClose()
+  }
+
+  function handleApply(stepId: number) {
+    const { name, id } = stepMockResponse
+      .flatMap((step) => step.items)
+      .find((item) => item.id === Number(stepId))
+
+    const itemSelected = {
+      idMockResponse: stepMockResponse[0].id,
+      description: stepMockResponse[0].name,
+      icon: stepMockResponse[0].icon,
+      name,
+      idItemMockResponse: id,
+    }
+
+    handleAddStep([itemSelected])
   }
 
   return (
@@ -56,9 +75,12 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
             <Divider />
 
-            <StepDrawer.RadioList steps={selectItem[0]?.items} />
+            <StepDrawer.RadioList
+              steps={stepMockResponse[0]?.items}
+              onValueChange={(stepId) => handleApply(Number(stepId))}
+            />
 
-            {!selectItem.length && (
+            {!stepMockResponse.length && (
               <StepDrawer.EmptyState message="Choose a step to see mocked responses." />
             )}
           </StepDrawer.Body>
