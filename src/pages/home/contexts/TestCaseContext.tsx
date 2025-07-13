@@ -1,4 +1,3 @@
-import { IMockResponses } from '@/api/interfaces/IMockResponses'
 import { createContext, ReactNode, useState } from 'react'
 
 interface StepProviderProps {
@@ -8,15 +7,15 @@ interface StepProviderProps {
 interface IStep {
   description: string
   icon: string
-  idItemMockResponse: number
-  idMockResponse: number
+  idItemMockResponse: string
+  idMockResponse: string
   name: string
 }
 
 interface StepContextType {
   steps: IStep[]
   handleAddStep: (steps: IStep[]) => void
-  handleRemoveStep: (stepId: number) => void
+  handleRemoveStep: (stepId: string) => void
 }
 
 export const StepCaseContext = createContext({} as StepContextType)
@@ -42,7 +41,11 @@ export function StepCaseProvider({ children }: StepProviderProps) {
     })
   }
 
-  function handleRemoveStep(itemId: number) {}
+  function handleRemoveStep(stepId: string) {
+    setSteps((prevSteps) =>
+      prevSteps.filter((step) => step.idItemMockResponse !== stepId),
+    )
+  }
 
   return (
     <StepCaseContext.Provider

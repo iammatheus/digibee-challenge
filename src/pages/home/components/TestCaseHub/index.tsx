@@ -9,12 +9,16 @@ import { StepMockResponses } from '../DefineConditions/components/StepMockRespon
 import { StepPayload } from '../DefineConditions/components/StepPayload'
 import { StepExpectResults } from '../DefineConditions/components/ExpectResults'
 import { StepPaths } from '../DefinePath/components/Paths'
-import { InputForm } from '@/components/Form/InputForm'
 import { StepCaseContext } from '../../contexts/TestCaseContext'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 import './style.css'
 import { StepSelected } from '@/components/Drawer/StepSelected'
+import z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { Controller, useForm } from 'react-hook-form'
+import { InputForm } from '@/components/Form/InputForm'
 
 type TestCaseHubProps = {
   hub: ITestCaseDrawer
@@ -23,6 +27,23 @@ type TestCaseHubProps = {
   expectResults: ITestCaseDrawer
   paths: ITestCaseDrawer
 }
+
+const stepSchema = z.object({
+  description: z.string().min(1, 'Description is required'),
+  icon: z.string().min(1, 'Icon is required'),
+  idItemMockResponse: z.uuid(),
+  idMockResponse: z.uuid(),
+  name: z.string().min(1, 'Name is required'),
+})
+
+const stepSchemaArray = z.object({
+  steps: z.array(stepSchema),
+  name: z.string().min(1, 'Name is required'),
+  description: z.string('Description is required'),
+  group: z.string().optional(),
+})
+
+type StepSchema = z.infer<typeof stepSchemaArray>
 
 export function TestCaseHub({
   hub,
@@ -34,8 +55,28 @@ export function TestCaseHub({
   const { onOpenChange, isOpen, onClose } = hub
   const { steps, handleRemoveStep } = useContext(StepCaseContext)
 
-  function handleRemoveStepMockResponses(id: number): void {
+  const { handleSubmit, setValue, control } = useForm<
+    z.infer<typeof stepSchemaArray>
+  >({
+    resolver: zodResolver(stepSchemaArray),
+    defaultValues: {
+      steps: [],
+      name: '',
+      description: '',
+      group: '',
+    },
+  })
+
+  useEffect(() => {
+    setValue('steps', steps)
+  }, [steps, setValue])
+
+  function handleRemoveStepMockResponses(id: string): void {
     handleRemoveStep(id)
+  }
+
+  function handleSubmitForm(steps: StepSchema) {
+    console.log(steps)
   }
 
   return (
@@ -77,7 +118,7 @@ export function TestCaseHub({
             </div>
           </Drawer.Header>
           <Drawer.Body>
-            <form>
+            <form onSubmit={handleSubmit(handleSubmitForm)}>
               <div className="flex flex-col gap-4 mb-8">
                 <header className="flex justify-between items-center">
                   <h3 className="text-xs text-gray-900 font-semibold">
@@ -113,7 +154,7 @@ export function TestCaseHub({
                 <>
                   {steps.map((stepItem) => {
                     return (
-                      <StepSelected.Root>
+                      <StepSelected.Root key={stepItem.idMockResponse}>
                         <StepSelected.Info
                           icon={stepItem.icon}
                           name={stepItem.name}
@@ -154,27 +195,55 @@ export function TestCaseHub({
 
                 <div className="overflow-hidden border border-gray-50 rounded-lg">
                   <div className="p-0 border border-b-1 hover:border-gray-900 rounded-t-lg transition ">
-                    <InputForm
-                      placeholder="Enter the name of the test"
-                      isRequired
-                      label="Name"
-                      radius="none"
-                      className="outline-1 rounded-none"
+                    <Controller
+                      name="name"
+                      control={control}
+                      render={({ field }) => {
+                        return (
+                          <InputForm
+                            placeholder="Enter the name of the test"
+                            label="Name"
+                            radius="none"
+                            errorMessage={'Name is required'}
+                            isRequired
+                            className="outline-1 rounded-none"
+                            {...field}
+                          />
+                        )
+                      }}
                     />
                   </div>
 
                   <div className="p-0 border border-t-gray-50 hover:border-gray-900 transition">
-                    <InputForm
-                      placeholder="Add information about the test"
-                      isRequired
-                      label="Description"
-                      radius="none"
+                    <Controller
+                      name="description"
+                      control={control}
+                      render={({ field }) => {
+                        return (
+                          <InputForm
+                            placeholder="Add information about the test"
+                            isRequired
+                            label="Description"
+                            errorMessage={'Description is required'}
+                            radius="none"
+                            {...field}
+                          />
+                        )
+                      }}
                     />
                   </div>
                   <div className="p-0 border border-t-gray-50 hover:border-gray-900 transition rounded-b-lg">
-                    <Select label="Add your test to a group">
-                      <SelectItem key="group1">Group 1</SelectItem>
-                    </Select>
+                    <Controller
+                      name="group"
+                      control={control}
+                      render={({ field }) => {
+                        return (
+                          <Select label="Add your test to a group" {...field}>
+                            <SelectItem key="group1">Group 1</SelectItem>
+                          </Select>
+                        )
+                      }}
+                    />
                   </div>
                 </div>
               </div>

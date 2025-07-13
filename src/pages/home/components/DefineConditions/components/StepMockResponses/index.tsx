@@ -1,5 +1,5 @@
 import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
-import { Button, Divider, SharedSelection } from '@heroui/react'
+import { addToast, Button, Divider, SharedSelection } from '@heroui/react'
 import { getMockResponsesMock } from '@/api/mocks/mock-responses-mock'
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useState } from 'react'
@@ -13,6 +13,7 @@ type TestCaseStepProps = {
 export function StepMockResponses({ step }: TestCaseStepProps) {
   const { onOpenChange, isOpen, onClose } = step
   const [stepMockResponse, setStepMockResponse] = useState<any[]>([])
+  const [stepId, setStepId] = useState<string>('')
 
   const { handleAddStep } = useContext(StepCaseContext)
 
@@ -23,7 +24,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
   function handleSelectChange(item: SharedSelection) {
     const filteredItem = mockResponses?.filter(
-      (response) => response.id === Number(item.currentKey),
+      (response) => response.id === item.currentKey,
     )
 
     setStepMockResponse(filteredItem!)
@@ -34,10 +35,10 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
     onClose()
   }
 
-  function handleApply(stepId: number) {
+  function handleApply() {
     const { name, id } = stepMockResponse
       .flatMap((step) => step.items)
-      .find((item) => item.id === Number(stepId))
+      .find((item) => item.id === stepId)
 
     const itemSelected = {
       idMockResponse: stepMockResponse[0].id,
@@ -48,6 +49,12 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
     }
 
     handleAddStep([itemSelected])
+    handleClose()
+    addToast({
+      title: 'Mock responses added',
+      description: name,
+      color: 'primary',
+    })
   }
 
   return (
@@ -77,7 +84,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
             <StepDrawer.RadioList
               steps={stepMockResponse[0]?.items}
-              onValueChange={(stepId) => handleApply(Number(stepId))}
+              onValueChange={(stepId) => setStepId(stepId)}
             />
 
             {!stepMockResponse.length && (
@@ -86,7 +93,12 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
           </StepDrawer.Body>
 
           <StepDrawer.Footer>
-            <Button className="w-screen" variant="bordered" radius="sm">
+            <Button
+              className="w-screen"
+              variant="bordered"
+              radius="sm"
+              onPress={handleApply}
+            >
               Apply
             </Button>
           </StepDrawer.Footer>
