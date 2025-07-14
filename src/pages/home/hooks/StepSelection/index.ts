@@ -6,6 +6,7 @@ import { useStepUi } from './useStepUi'
 import { useStepFlow } from './useStepFlow'
 import { ITestCaseDrawer } from '../../interface/ITestCaseDrawer'
 import { IMockResponses } from '@/api/interfaces/IMockResponses'
+import { useMemo } from 'react'
 
 interface StepSelectionProps {
   step: ITestCaseDrawer
@@ -33,39 +34,36 @@ export function useStepSelection({ step }: StepSelectionProps) {
     queryFn: getMockResponsesMock,
   })
 
-  const selectedStepIds = steps
-    .filter((item) => item.idMockResponse === stepMockResponse?.[0]?.id)
-    .map((item) => item.idItemMockResponse)
+  const currentStep = stepMockResponse
+
+  const selectedStepIds = useMemo(() => {
+    if (!currentStep) return []
+    return steps
+      .filter((item) => item.idMockResponse === currentStep.id)
+      .map((item) => item.idItemMockResponse)
+  }, [steps, currentStep])
 
   function clearStepStates() {
-    setStepMockResponse([])
+    setStepMockResponse(undefined)
     setStepId('')
   }
 
   function isSameSelectedStep(selectedStep: IMockResponses): boolean {
-    const [currentStep] = stepMockResponse
     return currentStep?.id === selectedStep.id
   }
 
   function handleSelectChange(item: SharedSelection) {
-    clearStepStates()
     const selectedId = item.currentKey
-
     const selectedStep = mockResponses.find(
       (response) => response.id === selectedId,
     )
 
-    if (!selectedStep) {
+    if (!selectedStep || isSameSelectedStep(selectedStep)) {
       clearStepStates()
       return
     }
 
-    if (isSameSelectedStep(selectedStep)) {
-      clearStepStates()
-      return
-    }
-
-    setStepMockResponse([selectedStep])
+    setStepMockResponse(selectedStep)
   }
 
   return {

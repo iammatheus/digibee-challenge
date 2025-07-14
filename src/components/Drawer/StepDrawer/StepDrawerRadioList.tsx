@@ -7,7 +7,7 @@ import { Check } from 'iconoir-react'
 import clsx from 'clsx'
 
 type StepDrawerRadioListProps = RadioGroupProps & {
-  steps: IItemsMockResponses[]
+  steps: IItemsMockResponses[] | undefined
   selectedStepIds?: string[]
   isDisabled?: boolean
 }
@@ -48,7 +48,7 @@ export function StepDrawerRadioList({
               <BoxRadioForm
                 isDisabled={isStepAlreadySelected}
                 description={step.date}
-                value={step.id ? step.id : ''}
+                value={step.id}
                 key={step.id}
                 className="w-[100%] border-0 hover:bg-transparent"
                 classNames={{

@@ -37,7 +37,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
         <StepDrawer.Body>
           <StepDrawer.Select
-            items={mockResponses || []}
+            items={mockResponses}
             onSelectionChange={handleSelectChange}
           >
             <></>
@@ -46,13 +46,13 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
           <Divider />
 
           <StepDrawer.RadioList
-            steps={stepMockResponse[0]?.items}
+            steps={stepMockResponse?.items}
             onValueChange={(stepId) => setStepId(stepId)}
             selectedStepIds={selectedStepIds}
             value={stepId}
           />
 
-          {!stepMockResponse.length && (
+          {!stepMockResponse && (
             <StepDrawer.EmptyState message="Choose a step to see mocked responses." />
           )}
         </StepDrawer.Body>

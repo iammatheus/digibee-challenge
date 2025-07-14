@@ -4,11 +4,13 @@ import { IMockResponses } from '@/api/interfaces/IMockResponses'
 
 export function useStepUi(step: ITestCaseDrawer) {
   const { onOpenChange, isOpen, onClose } = step
-  const [stepMockResponse, setStepMockResponse] = useState<IMockResponses[]>([])
+  const [stepMockResponse, setStepMockResponse] = useState<
+    IMockResponses | undefined
+  >(undefined)
   const [stepId, setStepId] = useState<string>('')
 
   function handleClose() {
-    setStepMockResponse([])
+    setStepMockResponse(undefined)
     setStepId('')
     onClose()
   }
