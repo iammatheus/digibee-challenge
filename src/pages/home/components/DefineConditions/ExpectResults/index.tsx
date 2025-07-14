@@ -1,10 +1,10 @@
-import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
 import { Button, Divider, SharedSelection } from '@heroui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
 import { getExpectResultsMock } from '@/api/mocks/expect-results-mock'
 import { IMockResponses } from '@/api/interfaces/IMockResponses'
+import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
 
 type TestCaseStepProps = {
   expectResults: ITestCaseDrawer
@@ -21,7 +21,7 @@ export function StepExpectResults({ expectResults }: TestCaseStepProps) {
 
   function handleSelectChange(item: SharedSelection) {
     const filteredItem = expectResultsData?.filter(
-      (response) => response.id === Number(item.currentKey),
+      (response) => response.id === item.currentKey,
     )
 
     setSelectItem(filteredItem!)

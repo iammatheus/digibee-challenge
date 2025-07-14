@@ -1,21 +1,9 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, useState } from 'react'
+import { IStep } from '../interface/IStep'
+import { StepContextType } from '../interface/IStepContextType'
 
 interface StepProviderProps {
-  children: ReactNode
-}
-
-interface IStep {
-  description: string
-  icon: string
-  idItemMockResponse: string
-  idMockResponse: string
-  name: string
-}
-
-interface StepContextType {
-  steps: IStep[]
-  handleAddStep: (steps: IStep[]) => void
-  handleRemoveStep: (stepId: string) => void
+  children: React.ReactNode
 }
 
 export const StepCaseContext = createContext({} as StepContextType)
@@ -36,7 +24,6 @@ export function StepCaseProvider({ children }: StepProviderProps) {
         ),
         ...steps,
       ]
-
       return mergedData
     })
   }
@@ -47,12 +34,17 @@ export function StepCaseProvider({ children }: StepProviderProps) {
     )
   }
 
+  function handleClearSteps() {
+    setSteps([])
+  }
+
   return (
     <StepCaseContext.Provider
       value={{
         steps,
         handleAddStep,
         handleRemoveStep,
+        handleClearSteps,
       }}
     >
       {children}
