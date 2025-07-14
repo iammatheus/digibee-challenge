@@ -48,7 +48,10 @@ export function useStepSelection({ step }: StepSelectionProps) {
     setStepId('')
   }
 
-  function isSameSelectedStep(selectedStep: IMockResponses): boolean {
+  function isSameSelectedStep(
+    currentStep: IMockResponses | undefined,
+    selectedStep: IMockResponses,
+  ): boolean {
     return currentStep?.id === selectedStep.id
   }
 
@@ -58,7 +61,7 @@ export function useStepSelection({ step }: StepSelectionProps) {
       (response) => response.id === selectedId,
     )
 
-    if (!selectedStep || isSameSelectedStep(selectedStep)) {
+    if (!selectedStep || isSameSelectedStep(currentStep, selectedStep)) {
       clearStepStates()
       return
     }
