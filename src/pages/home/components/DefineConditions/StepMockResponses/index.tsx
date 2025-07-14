@@ -1,44 +1,25 @@
-import { Button, Divider, SharedSelection } from '@heroui/react'
-import { getMockResponsesMock } from '@/api/mocks/mock-responses-mock'
-import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
+import { Button, Divider } from '@heroui/react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
-import { useStepSelection } from '../../../hooks/useStepSelection'
 import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
-import { IMockResponses } from '@/api/interfaces/IMockResponses'
+import { useStepSelection } from '@/pages/home/hooks/StepSelection'
 
 type TestCaseStepProps = {
   step: ITestCaseDrawer
 }
 
 export function StepMockResponses({ step }: TestCaseStepProps) {
-  const { onOpenChange, isOpen, onClose } = step
-  const [stepMockResponse, setStepMockResponse] = useState<IMockResponses[]>([])
-  const [stepId, setStepId] = useState<string>('')
-
-  const { data: mockResponses } = useQuery({
-    queryKey: ['mockResponses'],
-    queryFn: () => getMockResponsesMock(),
-  })
-
-  function handleClose() {
-    setStepMockResponse([])
-    onClose()
-  }
-
-  const { handleApply } = useStepSelection({
+  const {
     stepId,
+    isOpen,
+    selectedStepIds,
+    mockResponses,
     stepMockResponse,
+    handleApply,
+    onOpenChange,
     handleClose,
-  })
-
-  function handleSelectChange(item: SharedSelection) {
-    const filteredItem = mockResponses?.filter(
-      (response) => response.id === item.currentKey,
-    )
-
-    setStepMockResponse(filteredItem!)
-  }
+    handleSelectChange,
+    setStepId,
+  } = useStepSelection({ step })
 
   return (
     <StepDrawer.Root
@@ -67,6 +48,8 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
           <StepDrawer.RadioList
             steps={stepMockResponse[0]?.items}
             onValueChange={(stepId) => setStepId(stepId)}
+            selectedStepIds={selectedStepIds}
+            value={stepId}
           />
 
           {!stepMockResponse.length && (

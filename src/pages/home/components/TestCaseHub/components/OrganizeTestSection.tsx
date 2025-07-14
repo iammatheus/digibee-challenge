@@ -9,15 +9,15 @@ type Props = {
 
 export function OrganizeTestSection({ control }: Props) {
   return (
-    <div className="flex flex-col gap-4 mb-8">
-      <header className="flex justify-between items-center gap-2">
-        <h3 className="text-xs text-gray-900 font-semibold">
+    <div className="mb-8 flex flex-col gap-4">
+      <header className="flex items-center justify-between gap-2">
+        <h3 className="text-xs font-semibold text-gray-900">
           ORGANIZE YOUR TESTS
         </h3>
       </header>
 
-      <div className="overflow-hidden border border-gray-50 rounded-lg">
-        <div className="p-0 border border-b-1 hover:border-gray-900 rounded-t-lg transition ">
+      <div className="overflow-hidden rounded-lg border border-gray-50">
+        <div className="rounded-t-lg border border-b-1 p-0 transition hover:border-gray-900">
           <Controller
             name="name"
             control={control}
@@ -28,14 +28,14 @@ export function OrganizeTestSection({ control }: Props) {
                 radius="none"
                 errorMessage="Name is required"
                 isRequired
-                className="outline-1 rounded-none"
+                className="rounded-none outline-1"
                 {...field}
               />
             )}
           />
         </div>
 
-        <div className="p-0 border border-t-gray-50 hover:border-gray-900 transition">
+        <div className="border border-t-gray-50 p-0 transition hover:border-gray-900">
           <Controller
             name="description"
             control={control}
@@ -52,7 +52,7 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="p-0 border border-t-gray-50 hover:border-gray-900 transition rounded-b-lg">
+        <div className="rounded-b-lg border border-t-gray-50 p-0 transition hover:border-gray-900">
           <Controller
             name="group"
             control={control}
