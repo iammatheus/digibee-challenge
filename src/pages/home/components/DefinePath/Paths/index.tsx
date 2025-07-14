@@ -1,9 +1,10 @@
-import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
 import { Button, Divider, SharedSelection } from '@heroui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
 import { getPathsMock } from '@/api/mocks/paths-mock'
+import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
+import { IMockResponses } from '@/api/interfaces/IMockResponses'
 
 type TestCaseStepProps = {
   paths: ITestCaseDrawer
@@ -11,7 +12,7 @@ type TestCaseStepProps = {
 
 export function StepPaths({ paths }: TestCaseStepProps) {
   const { onOpenChange, isOpen, onClose } = paths
-  const [selectItem, setSelectItem] = useState<any[]>([])
+  const [selectItem, setSelectItem] = useState<IMockResponses[]>([])
 
   const { data: pathsData } = useQuery({
     queryKey: ['pathsResponse'],
@@ -20,7 +21,7 @@ export function StepPaths({ paths }: TestCaseStepProps) {
 
   function handleSelectChange(item: SharedSelection) {
     const filteredItem = pathsData?.filter(
-      (response) => response.id === Number(item.currentKey),
+      (response) => response.id === item.currentKey,
     )
 
     setSelectItem(filteredItem!)

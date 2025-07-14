@@ -1,7 +1,8 @@
+import { IMockResponses } from '@/api/interfaces/IMockResponses'
 import { Select, SelectItem, Avatar, SelectProps } from '@heroui/react'
 
 type StepDrawerSelectProps = SelectProps & {
-  items: any[]
+  items: IMockResponses[]
 }
 
 export function StepDrawerSelect({
@@ -19,14 +20,18 @@ export function StepDrawerSelect({
       items={items}
       radius="sm"
       labelPlacement="outside"
-      renderValue={(selected) =>
-        selected.map((item) => (
+      renderValue={(selected) => {
+        const typedSelected = selected as Array<{
+          key: string
+          data: IMockResponses
+        }>
+        return typedSelected.map((item) => (
           <div key={item.key} className="flex gap-2 items-center">
             <Avatar src={item.data.icon} size="sm" />
             <span>{item.data.name}</span>
           </div>
         ))
-      }
+      }}
     >
       {(item) => (
         <SelectItem key={item.id} textValue={item.name}>

@@ -9,7 +9,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <HeroProvider>
-        <ToastProvider placement="top-right" />
+        <ToastProvider placement="bottom-left" />
         <StepCaseProvider>
           <Home />
         </StepCaseProvider>
