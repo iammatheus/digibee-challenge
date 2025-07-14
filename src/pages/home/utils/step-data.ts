@@ -3,18 +3,20 @@ import { IStep } from '@/pages/home/interface/IStep'
 
 export function getSelectedItem(
   id: string,
-  stepMockResponse: IMockResponses[],
+  stepMockResponse: IMockResponses | undefined,
 ) {
-  return stepMockResponse
-    .flatMap((step) => step.items)
-    .find((item) => item.id === id)
+  if (!stepMockResponse) return undefined
+
+  return stepMockResponse.items.find((item) => item.id === id)
 }
 
 export function buildStep(
   item: { name: string; id: string },
-  stepMockResponse: IMockResponses[],
-): IStep {
-  const stepItem = stepMockResponse[0]
+  stepMockResponse: IMockResponses | undefined,
+): IStep | undefined {
+  const stepItem = stepMockResponse
+  if (!stepItem) return
+
   return {
     idMockResponse: stepItem.id,
     description: stepItem.name,
@@ -24,8 +26,8 @@ export function buildStep(
   }
 }
 
-export function stepAlreadyExists(newStep: IStep, steps: IStep[]) {
+export function stepAlreadyExists(newStep: IStep | undefined, steps: IStep[]) {
   return steps.some(
-    (step) => step.idItemMockResponse === newStep.idItemMockResponse,
+    (step) => step.idItemMockResponse === newStep?.idItemMockResponse,
   )
 }

@@ -12,7 +12,7 @@ export function StepDrawerSelect({
   return (
     <Select
       {...props}
-      className="mb-6 -m-t-4"
+      className="-m-t-4 mb-6"
       classNames={{ trigger: 'min-h-16', label: 'hidden' }}
       label="Choose a step..."
       variant="bordered"
@@ -26,7 +26,7 @@ export function StepDrawerSelect({
           data: IMockResponses
         }>
         return typedSelected.map((item) => (
-          <div key={item.key} className="flex gap-2 items-center">
+          <div key={item.key} className="flex items-center gap-2">
             <Avatar src={item.data.icon} size="sm" />
             <span>{item.data.name}</span>
           </div>

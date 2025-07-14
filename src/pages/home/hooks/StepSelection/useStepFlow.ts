@@ -10,7 +10,7 @@ import {
 
 interface StepFlowProps {
   stepId: string
-  stepMockResponse: IMockResponses[]
+  stepMockResponse: IMockResponses | undefined
   handleClose: () => void
 }
 
@@ -28,8 +28,9 @@ export function useStepFlow({
     const itemSelected = buildStep(selectedItem, stepMockResponse)
     const alreadyExists = stepAlreadyExists(itemSelected, steps)
 
+    if (!itemSelected || alreadyExists) return
+
     handleClose()
-    if (alreadyExists) return
 
     handleAddStep([itemSelected])
 
