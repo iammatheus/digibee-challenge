@@ -5,7 +5,7 @@ import { ITestCaseDrawer } from '../interface/ITestCaseDrawer'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { registerTestCase } from '@/api/register-test-case'
-import { showToast } from '@/utils/showToast'
+import { showToast } from '@/utils/show-toast'
 import z from 'zod'
 
 type TestCaseHubProps = {
