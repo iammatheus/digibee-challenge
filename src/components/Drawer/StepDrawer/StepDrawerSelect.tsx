@@ -34,7 +34,11 @@ export function StepDrawerSelect({
       }}
     >
       {(item) => (
-        <SelectItem key={item.id} textValue={item.name}>
+        <SelectItem
+          key={item.id}
+          textValue={item.name}
+          data-testid={`option-${item.id}`}
+        >
           <div className="flex items-center gap-2">
             <Avatar src={item.icon} size="sm" />
             <span>{item.name}</span>
