@@ -1,10 +1,13 @@
+export interface IItemsMockResponses {
+  id: string
+  name: string
+  date: string
+  quantity?: number
+}
+
 export interface IMockResponses {
-  id: number
+  id: string
   name: string
   icon: string
-  items: {
-    id: number
-    name: string
-    date: string
-  }[]
+  items: IItemsMockResponses[]
 }

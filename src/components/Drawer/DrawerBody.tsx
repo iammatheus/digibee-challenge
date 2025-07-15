@@ -5,9 +5,5 @@ interface DrawerBodyProps {
 }
 
 export function DrawerBody({ children }: DrawerBodyProps) {
-  return (
-    <>
-      <Body>{children}</Body>
-    </>
-  )
+  return <Body>{children}</Body>
 }

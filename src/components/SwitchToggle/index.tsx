@@ -11,15 +11,15 @@ export function SwitchToggle({
 }: SectionHeaderProps) {
   return (
     <div className="flex items-center gap-3">
-      <p className="text-xs text-gray-900 font-semibold">
+      <h3 className="text-xs font-semibold text-gray-900">
         {toggleLabel}{' '}
         {quantitySteps && (
-          <span className="text-gray-500 font-normal">
-            ({quantitySteps}) steps
+          <span className="font-normal tracking-[0.4px] text-gray-500">
+            ({quantitySteps} steps)
           </span>
         )}
-      </p>
-      <Switch isDisabled className="bg-gray-200 items-center rounded-full" />
+      </h3>
+      <Switch isDisabled className="items-center rounded-full bg-gray-200" />
     </div>
   )
 }

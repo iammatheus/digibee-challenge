@@ -20,3 +20,21 @@ button {
     400 1rem 'DM Sans',
     sans-serif;
 }
+
+button,
+textarea,
+input,
+label,
+span,
+p {
+  letter-spacing: 0.25px;
+}
+
+h1,
+h2 {
+  letter-spacing: 1px;
+}
+
+h3 {
+  letter-spacing: 0.2px;
+}

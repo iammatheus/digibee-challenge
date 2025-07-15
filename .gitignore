@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+bun.lockb
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,8 +28,5 @@ dist-ssr
 *.sln
 *.sw?
 
-
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
-bun.lockb
+# Local DB
+src/api/db/db.json

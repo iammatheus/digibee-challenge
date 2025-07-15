@@ -6,6 +6,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import prettier from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
 
 export default [
   js.configs.recommended,
@@ -24,12 +25,20 @@ export default [
       },
     },
 
+    env: {
+      browser: true,
+      node: true,
+      es2021: true,
+      'vitest/globals': true,
+    },
+
     plugins: {
       '@typescript-eslint': tseslint,
       react,
       'react-hooks': reactHooks,
       'jsx-a11y': jsxA11y,
       prettier,
+      'simple-import-sort': simpleImportSort,
     },
     settings: {
       react: {
@@ -42,6 +51,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
       'react/no-unknown-property': 'error',
+      'simple-import-sort/imports': 'error',
 
       // Regras de acessibilidade
       'jsx-a11y/alt-text': [
@@ -51,6 +61,7 @@ export default [
           img: ['Image'],
         },
       ],
+
       'jsx-a11y/aria-props': 'warn',
       'jsx-a11y/aria-proptypes': 'warn',
       'jsx-a11y/aria-unsupported-elements': 'warn',
@@ -71,6 +82,7 @@ export default [
         },
       ],
     },
+
     ignores: ['node_modules'],
   },
   prettierConfig,

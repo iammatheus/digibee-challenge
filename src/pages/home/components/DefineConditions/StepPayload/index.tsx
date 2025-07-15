@@ -1,9 +1,10 @@
-import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
 import { Button, Divider, SharedSelection } from '@heroui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
 import { getPayloadMock } from '@/api/mocks/payload-mock'
+import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
+import { IMockResponses } from '@/api/interfaces/IMockResponses'
 
 type TestCaseStepProps = {
   payload: ITestCaseDrawer
@@ -11,7 +12,7 @@ type TestCaseStepProps = {
 
 export function StepPayload({ payload }: TestCaseStepProps) {
   const { onOpenChange, isOpen, onClose } = payload
-  const [selectItem, setSelectItem] = useState<any[]>([])
+  const [selectItem, setSelectItem] = useState<IMockResponses[]>([])
 
   const { data: payloadData } = useQuery({
     queryKey: ['payloadResponse'],
@@ -20,7 +21,7 @@ export function StepPayload({ payload }: TestCaseStepProps) {
 
   function handleSelectChange(item: SharedSelection) {
     const filteredItem = payloadData?.filter(
-      (response) => response.id === Number(item.currentKey),
+      (response) => response.id === item.currentKey,
     )
 
     setSelectItem(filteredItem!)
@@ -49,6 +50,7 @@ export function StepPayload({ payload }: TestCaseStepProps) {
             <StepDrawer.Select
               items={payloadData || []}
               onSelectionChange={handleSelectChange}
+              placeholder="Choose a step to payload..."
             >
               <></>
             </StepDrawer.Select>

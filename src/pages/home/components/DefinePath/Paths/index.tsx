@@ -1,26 +1,27 @@
-import { ITestCaseDrawer } from '../../../../interface/ITestCaseDrawer'
 import { Button, Divider, SharedSelection } from '@heroui/react'
-import { getMockResponsesMock } from '@/api/mocks/mock-responses-mock'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
+import { getPathsMock } from '@/api/mocks/paths-mock'
+import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
+import { IMockResponses } from '@/api/interfaces/IMockResponses'
 
 type TestCaseStepProps = {
-  step: ITestCaseDrawer
+  paths: ITestCaseDrawer
 }
 
-export function StepMockResponses({ step }: TestCaseStepProps) {
-  const { onOpenChange, isOpen, onClose } = step
-  const [selectItem, setSelectItem] = useState<any[]>([])
+export function StepPaths({ paths }: TestCaseStepProps) {
+  const { onOpenChange, isOpen, onClose } = paths
+  const [selectItem, setSelectItem] = useState<IMockResponses[]>([])
 
-  const { data: mockResponses } = useQuery({
-    queryKey: ['mockResponses'],
-    queryFn: () => getMockResponsesMock(),
+  const { data: pathsData } = useQuery({
+    queryKey: ['pathsResponse'],
+    queryFn: () => getPathsMock(),
   })
 
   function handleSelectChange(item: SharedSelection) {
-    const filteredItem = mockResponses?.filter(
-      (response) => response.id === Number(item.currentKey),
+    const filteredItem = pathsData?.filter(
+      (response) => response.id === item.currentKey,
     )
 
     setSelectItem(filteredItem!)
@@ -36,20 +37,20 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
       <StepDrawer.Root
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        isDismissable={false}
         radius="none"
       >
         <StepDrawer.Content>
           <StepDrawer.Header
-            title="Mocked Responses"
-            description="Choose a connector to simulate the response."
+            title="Paths"
+            description="Choose a connector to simulate the paths."
             onBack={handleClose}
           />
 
           <StepDrawer.Body>
             <StepDrawer.Select
-              items={mockResponses || []}
+              items={pathsData || []}
               onSelectionChange={handleSelectChange}
+              placeholder="Choose a step to paths..."
             >
               <></>
             </StepDrawer.Select>
@@ -59,12 +60,12 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
             <StepDrawer.RadioList steps={selectItem[0]?.items} />
 
             {!selectItem.length && (
-              <StepDrawer.EmptyState message="Choose a step to see mocked responses." />
+              <StepDrawer.EmptyState message="Choose a step to see paths." />
             )}
           </StepDrawer.Body>
 
           <StepDrawer.Footer>
-            <Button className="w-screen" variant="bordered" radius="sm">
+            <Button className="w-screen" variant="bordered">
               Apply
             </Button>
           </StepDrawer.Footer>
