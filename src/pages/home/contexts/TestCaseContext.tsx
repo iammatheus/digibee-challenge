@@ -11,20 +11,20 @@ export const StepCaseContext = createContext({} as StepContextType)
 export function StepCaseProvider({ children }: StepProviderProps) {
   const [steps, setSteps] = useState<IStep[]>([])
 
-  function handleAddStep(steps: IStep[] | undefined) {
-    if (!steps) return
+  function handleAddStep(newSteps: IStep[] | undefined) {
+    if (!newSteps) return
+
     setSteps((prevSteps) => {
-      const mergedData = [
-        ...prevSteps.filter((existingStep) =>
-          steps?.some(
-            (newStep) =>
-              newStep.idMockResponse === existingStep.idMockResponse &&
-              newStep.idItemMockResponse === existingStep.idItemMockResponse,
+      const filteredNewSteps = newSteps.filter(
+        (newStep) =>
+          !prevSteps.some(
+            (existingStep) =>
+              existingStep.idMockResponse === newStep.idMockResponse &&
+              existingStep.idItemMockResponse === newStep.idItemMockResponse,
           ),
-        ),
-        ...steps,
-      ]
-      return mergedData
+      )
+
+      return [...prevSteps, ...filteredNewSteps]
     })
   }
 
