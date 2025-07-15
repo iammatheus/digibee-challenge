@@ -55,7 +55,7 @@ export function StepDrawerRadioList({
                   selected item
                 </span>
               )}
-              <div className="bg-neutral- ml-4 flex h-[32px] w-[32px] items-center justify-center rounded-md p-2">
+              <div className="bg-neutral- ml-4 flex h-[32px] w-[32px] items-center justify-center rounded-md bg-neutral-50 p-2">
                 <Avatar
                   src={tagMock}
                   radius="sm"
