@@ -18,6 +18,8 @@ export function DrawerRoot({
         hideCloseButton
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        size="lg"
+        backdrop="transparent"
       >
         {children}
       </Drawer>

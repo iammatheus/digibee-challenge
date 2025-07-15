@@ -50,6 +50,7 @@ export function StepPaths({ paths }: TestCaseStepProps) {
             <StepDrawer.Select
               items={pathsData || []}
               onSelectionChange={handleSelectChange}
+              placeholder="Choose a step to paths..."
             >
               <></>
             </StepDrawer.Select>

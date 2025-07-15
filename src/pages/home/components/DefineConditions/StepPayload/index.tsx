@@ -50,6 +50,7 @@ export function StepPayload({ payload }: TestCaseStepProps) {
             <StepDrawer.Select
               items={payloadData || []}
               onSelectionChange={handleSelectChange}
+              placeholder="Choose a step to payload..."
             >
               <></>
             </StepDrawer.Select>

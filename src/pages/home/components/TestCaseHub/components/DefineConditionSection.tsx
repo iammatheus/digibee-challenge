@@ -19,11 +19,11 @@ export function DefineConditionsSection({
   onRemoveStep,
 }: Props) {
   return (
-    <div className="flex flex-col gap-4 mb-8">
-      <header className="flex justify-between items-center gap-2">
-        <h3 className="text-xs text-gray-900 font-semibold">
+    <div className="mb-8 flex flex-col gap-4">
+      <header className="flex items-center justify-between gap-2">
+        <h2 className="text-xs font-semibold text-gray-900">
           DEFINE THE CONDITIONS
-        </h3>
+        </h2>
       </header>
 
       <BoxForm
@@ -52,12 +52,12 @@ export function DefineConditionsSection({
       ))}
 
       {steps.length > 0 && (
-        <StepSelected.AddNew onPress={step.onOpen} text="Add new mock" />
+        <StepSelected.AddNew onPress={step.onOpen} text="Add a new mock" />
       )}
 
       <BoxForm
         title="Expect Results"
-        description="Cnfigure assertions"
+        description="Configure assertions"
         onOpen={expectResults.onOpen}
       />
     </div>

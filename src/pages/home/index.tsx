@@ -6,14 +6,14 @@ export function Home() {
   const { hub, step, payload, expectResults, paths } = useTestCaseDrawer()
   return (
     <>
-      <div className="flex justify-center items-center m-auto w-dvw h-dvh">
+      <div className="m-auto flex h-dvh w-dvw items-center justify-center">
         <Button
           onPress={hub.onOpen}
           variant="bordered"
           className="border-2 border-gray-900 font-semibold"
           size="lg"
         >
-          Open Drawer
+          Open drawer
         </Button>
         <TestCaseHub
           hub={hub}

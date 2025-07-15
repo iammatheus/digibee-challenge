@@ -8,22 +8,23 @@ type Props = {
 
 export function FooterActions({ isDisabled, isSubmitting, onCancel }: Props) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex w-[100%] max-w-[400px] items-center justify-between">
       <Button
-        radius="sm"
+        radius="md"
         variant="light"
         aria-label="cancel"
         onPress={onCancel}
+        className="font-semibold"
       >
         Cancel
       </Button>
 
       <Button
-        radius="sm"
+        radius="md"
         variant="bordered"
         aria-label="submit"
         type="submit"
-        className="border border-gray-900"
+        className={`border-1 font-semibold ${isDisabled ? 'cursor-not-allowed border-gray-300' : 'border-gray-900'}`}
         isLoading={isSubmitting}
         isDisabled={isDisabled}
       >

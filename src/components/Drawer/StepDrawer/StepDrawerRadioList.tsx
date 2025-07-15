@@ -1,5 +1,5 @@
 import { BoxRadioForm } from '@/components/Form/BoxRadioForm'
-import { RadioGroup, RadioGroupProps } from '@heroui/react'
+import { Avatar, RadioGroup, RadioGroupProps } from '@heroui/react'
 
 import tagMock from '../../../assets/tag-mock.svg'
 import { IItemsMockResponses } from '@/api/interfaces/IMockResponses'
@@ -25,7 +25,7 @@ export function StepDrawerRadioList({
         return (
           <div
             className={clsx(
-              'relative flex cursor-not-allowed items-start rounded-lg border-1 border-gray-200 transition',
+              'relative flex cursor-not-allowed items-center rounded-lg border-1 border-gray-200 transition',
               {
                 'hover:border-gray-900': !isStepAlreadySelected,
               },
@@ -33,15 +33,16 @@ export function StepDrawerRadioList({
             key={step.id}
           >
             {isStepAlreadySelected && (
-              <span className="absolute right-4 top-5 z-10 flex items-center justify-end rounded-md bg-gray-100 p-1 text-xs">
+              <span className="absolute right-4 top-5 z-10 flex items-center justify-end rounded-md bg-neutral-100 p-1 text-xs">
                 <Check />
                 selected item
               </span>
             )}
-            <div className="ml-4 mt-6">
-              <img
+            <div className="ml-4 flex h-[32px] w-[32px] items-center justify-center rounded-md bg-neutral-50 p-2">
+              <Avatar
                 src={tagMock}
-                className={isStepAlreadySelected ? 'opacity-50' : 'opacity-100'}
+                radius="sm"
+                className={`h-[16px] w-[16px] ${isStepAlreadySelected ? 'opacity-50' : 'opacity-100'}`}
               />
             </div>
             <div className="flex w-[100%] items-center justify-end">
