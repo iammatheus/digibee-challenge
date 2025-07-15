@@ -47,7 +47,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
           <StepDrawer.RadioList
             steps={stepMockResponse?.items}
-            onValueChange={(stepId) => setStepId(stepId)}
+            onValueChange={setStepId}
             selectedStepIds={selectedStepIds}
             value={stepId}
           />
