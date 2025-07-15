@@ -9,10 +9,10 @@ interface BoxFormProps {
 
 export function BoxForm({ title, description, onOpen }: BoxFormProps) {
   return (
-    <div className="w-full text-left rounded-lg border border-gray-200 hover:border-gray-800 p-3 transition flex items-center justify-between">
+    <div className="flex w-full items-center justify-between rounded-lg border-1 border-neutral-200 p-3 text-left transition hover:border-gray-800">
       <div>
-        <h2 className="font-medium text-sm text-gray-900">{title}</h2>
-        <p className="text-sm text-gray-500 mt-1">{description}</p>
+        <h3 className="text-sm font-medium text-gray-900">{title}</h3>
+        <p className="mt-1 text-sm text-gray-500">{description}</p>
       </div>
       <Button
         onPress={onOpen}
@@ -22,7 +22,7 @@ export function BoxForm({ title, description, onOpen }: BoxFormProps) {
         isIconOnly
         aria-label="open"
       >
-        <Plus className="w-5 h-5 text-gray-900" />
+        <Plus className="h-5 w-5 text-gray-900" />
       </Button>
     </div>
   )

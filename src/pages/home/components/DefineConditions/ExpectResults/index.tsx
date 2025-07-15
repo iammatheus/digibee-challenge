@@ -50,6 +50,7 @@ export function StepExpectResults({ expectResults }: TestCaseStepProps) {
             <StepDrawer.Select
               items={expectResultsData || []}
               onSelectionChange={handleSelectChange}
+              placeholder="Choose a step to expect results..."
             >
               <></>
             </StepDrawer.Select>

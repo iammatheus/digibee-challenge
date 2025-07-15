@@ -8,11 +8,13 @@ export function StepDrawerEmpty({
   message = 'Choose a step to see.',
 }: StepDrawerEmpty) {
   return (
-    <div className="flex justify-center items-center flex-col gap-4 mt-14">
-      <div className="bg-neutral-100 p-2 rounded-lg">
+    <div className="mt-9 flex flex-col items-center justify-center gap-4">
+      <div className="rounded-xl bg-[#f2f2f2] p-2">
         <GitCommit width={48} height={48} />
       </div>
-      <p className="text-center">{message}</p>
+      <p className="w-[100%] max-w-[220px] text-center tracking-[0.5px]">
+        {message}
+      </p>
     </div>
   )
 }

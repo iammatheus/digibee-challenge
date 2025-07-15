@@ -11,13 +11,13 @@ export function OrganizeTestSection({ control }: Props) {
   return (
     <div className="mb-8 flex flex-col gap-4">
       <header className="flex items-center justify-between gap-2">
-        <h3 className="text-xs font-semibold text-gray-900">
+        <h2 className="text-xs font-semibold text-gray-900">
           ORGANIZE YOUR TESTS
-        </h3>
+        </h2>
       </header>
 
-      <div className="overflow-hidden rounded-lg border border-gray-50">
-        <div className="rounded-t-lg border border-b-1 p-0 transition hover:border-gray-900">
+      <div className="overflow-hidden rounded-lg border-1 border-neutral-50">
+        <div className="rounded-t-lg border-1 border-b-1 p-0 transition hover:border-gray-900">
           <Controller
             name="name"
             control={control}
@@ -35,7 +35,7 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="border border-t-gray-50 p-0 transition hover:border-gray-900">
+        <div className="border-1 border-t-neutral-50 p-0 transition hover:border-gray-900">
           <Controller
             name="description"
             control={control}
@@ -52,12 +52,16 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="rounded-b-lg border border-t-gray-50 p-0 transition hover:border-gray-900">
+        <div className="rounded-b-lg border border-t-neutral-50 p-0 transition hover:border-gray-900">
           <Controller
             name="group"
             control={control}
             render={({ field }) => (
-              <Select label="Add your test to a group" {...field}>
+              <Select
+                label="Group"
+                placeholder="Add your test to a group"
+                {...field}
+              >
                 <SelectItem key="group1">Group 1</SelectItem>
               </Select>
             )}

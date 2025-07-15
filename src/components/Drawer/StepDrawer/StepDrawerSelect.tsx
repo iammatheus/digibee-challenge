@@ -16,9 +16,8 @@ export function StepDrawerSelect({
       classNames={{ trigger: 'min-h-16', label: 'hidden' }}
       label="Choose a step..."
       variant="bordered"
-      placeholder="Choose a step..."
       items={items}
-      radius="sm"
+      radius="lg"
       labelPlacement="outside"
       renderValue={(selected) => {
         const typedSelected = selected as Array<{
@@ -27,7 +26,9 @@ export function StepDrawerSelect({
         }>
         return typedSelected.map((item) => (
           <div key={item.key} className="flex items-center gap-2">
-            <Avatar src={item.data.icon} size="sm" />
+            <div className="flex h-[40px] w-[40px] items-center justify-center rounded-md bg-neutral-50">
+              <Avatar src={item.data.icon} className="h-[24px] w-[24px]" />
+            </div>
             <span>{item.data.name}</span>
           </div>
         ))
@@ -40,7 +41,7 @@ export function StepDrawerSelect({
           data-testid={`option-${item.id}`}
         >
           <div className="flex items-center gap-2">
-            <Avatar src={item.icon} size="sm" />
+            <Avatar src={item.icon} className="h-[24px] w-[24px]" />
             <span>{item.name}</span>
           </div>
         </SelectItem>

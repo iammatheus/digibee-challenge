@@ -31,36 +31,40 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
     <StepDrawer.Root isOpen={isOpen} onOpenChange={onOpenChange} radius="none">
       <StepDrawer.Content>
         <StepDrawer.Header
-          title="Mocked Responses"
+          title="Mock Response"
           description="Choose a connector to simulate the response."
           onBack={handleClose}
         />
 
-        <StepDrawer.Body>
+        <StepDrawer.Body className="relative">
           <StepDrawer.Select
             items={mockResponses}
             onSelectionChange={handleSelectChange}
+            placeholder="Choose a step to mock..."
           >
             <></>
           </StepDrawer.Select>
 
-          <Divider />
+          <Divider className="absolute left-0 top-[265px] w-[100%]" />
 
           <StepDrawer.RadioList
             steps={stepMockResponse?.items}
             onValueChange={setStepId}
             selectedStepIds={selectedStepIds}
             value={stepId}
+            className="mt-8"
           />
 
           {!stepMockResponse && (
-            <StepDrawer.EmptyState message="Choose a step to see mocked responses." />
+            <StepDrawer.EmptyState message="Choose a step to see saved mocked responses." />
           )}
         </StepDrawer.Body>
 
-        <StepDrawer.Footer>
+        <StepDrawer.Footer className="flex items-center justify-center">
           <Button
-            className="w-screen"
+            className={`w-[100%] max-w-[400px] rounded-md border-1 font-semibold ${
+              stepId ? 'border-gray-900' : 'cursor-not-allowed border-gray-300'
+            }`}
             variant="bordered"
             radius="sm"
             onPress={handleApply}

@@ -60,11 +60,13 @@ export function TestCaseHub({
 
               <OrganizeTestSection control={control} />
 
-              <FooterActions
-                isDisabled={!isValid || !isDirty}
-                isSubmitting={isSubmitting}
-                onCancel={onClose}
-              />
+              <div className="flex justify-center">
+                <FooterActions
+                  isDisabled={!isValid || !isDirty}
+                  isSubmitting={isSubmitting}
+                  onCancel={onClose}
+                />
+              </div>
             </form>
           </Drawer.Body>
         </Drawer.Content>

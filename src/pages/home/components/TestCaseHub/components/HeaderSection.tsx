@@ -33,7 +33,7 @@ export function HeaderSection({ onClose }: HeaderSectionProps) {
 
       <div className="mb-4">
         <h1 className="mb-2 text-[22px]">Create a test case</h1>
-        <p className="text-sm font-normal text-gray-500">
+        <p className="w-[100%] max-w-[400px] text-sm font-normal text-gray-500">
           Define your coverage area and use tools to simulate the desired paths.
         </p>
       </div>
