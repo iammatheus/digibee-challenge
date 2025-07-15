@@ -56,6 +56,7 @@ export function useStepSelection({ step }: StepSelectionProps) {
   }
 
   function handleSelectChange(item: SharedSelection) {
+    clearStepStates()
     const selectedId = item.currentKey
     const selectedStep = mockResponses.find(
       (response) => response.id === selectedId,
@@ -81,5 +82,6 @@ export function useStepSelection({ step }: StepSelectionProps) {
     handleClose,
     handleApply,
     handleSelectChange,
+    clearStepStates,
   }
 }
