@@ -2,6 +2,7 @@ import { Button, Divider } from '@heroui/react'
 import { StepDrawer } from '@/components/Drawer/StepDrawer'
 import { ITestCaseDrawer } from '@/pages/home/interface/ITestCaseDrawer'
 import { useStepSelection } from '@/pages/home/hooks/StepSelection'
+import { useEffect } from 'react'
 
 type TestCaseStepProps = {
   step: ITestCaseDrawer
@@ -19,15 +20,15 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
     handleClose,
     handleSelectChange,
     setStepId,
+    clearStepStates,
   } = useStepSelection({ step })
 
+  useEffect(() => {
+    clearStepStates()
+  }, [isOpen])
+
   return (
-    <StepDrawer.Root
-      isOpen={isOpen}
-      onOpenChange={onOpenChange}
-      isDismissable={false}
-      radius="none"
-    >
+    <StepDrawer.Root isOpen={isOpen} onOpenChange={onOpenChange} radius="none">
       <StepDrawer.Content>
         <StepDrawer.Header
           title="Mocked Responses"
