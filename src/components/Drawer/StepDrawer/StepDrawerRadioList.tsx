@@ -5,7 +5,7 @@ import tagMock from '../../../assets/tag-mock.svg'
 import { IItemsMockResponses } from '@/api/interfaces/IMockResponses'
 import { Check } from 'iconoir-react'
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { StepSekeleton } from './StepSkeleton'
 
 type StepDrawerRadioListProps = RadioGroupProps & {
@@ -20,7 +20,7 @@ export function StepDrawerRadioList({
   selectedStepIds,
   ...props
 }: StepDrawerRadioListProps) {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     if (steps && steps.length > 0) {
@@ -38,7 +38,7 @@ export function StepDrawerRadioList({
         const isStepAlreadySelected = selectedStepIds?.includes(step.id)
         {
           return isLoading ? (
-            <StepSekeleton />
+            <StepSekeleton key={step.id} />
           ) : (
             <div
               className={clsx(
@@ -75,7 +75,10 @@ export function StepDrawerRadioList({
                       'data-[selected=true]:bg-pink-600 data-[selected=true]:border-pink-600',
                   }}
                 >
-                  {step.name}
+                  {step.name}{' '}
+                  <span className="text-xs text-gray-400">
+                    ({step.quantity})
+                  </span>
                 </BoxRadioForm>
               </div>
             </div>
