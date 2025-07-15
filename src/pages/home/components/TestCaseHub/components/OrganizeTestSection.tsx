@@ -16,8 +16,8 @@ export function OrganizeTestSection({ control }: Props) {
         </h2>
       </header>
 
-      <div className="overflow-hidden rounded-lg border-1 border-neutral-50">
-        <div className="rounded-t-lg border-1 border-b-1 p-0 transition hover:border-gray-900">
+      <div className="overflow-hidden rounded-lg border-1 border-neutral-200">
+        <div className="rounded-t-lg border-1 border-neutral-100 p-0 transition hover:border-gray-900">
           <Controller
             name="name"
             control={control}
@@ -28,14 +28,13 @@ export function OrganizeTestSection({ control }: Props) {
                 radius="none"
                 errorMessage="Name is required"
                 isRequired
-                className="rounded-none outline-1"
                 {...field}
               />
             )}
           />
         </div>
 
-        <div className="border-1 border-t-neutral-50 p-0 transition hover:border-gray-900">
+        <div className="border-b-none border-1 border-neutral-100 p-0 transition hover:border-gray-900">
           <Controller
             name="description"
             control={control}
@@ -52,7 +51,7 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="rounded-b-lg border border-t-neutral-50 p-0 transition hover:border-gray-900">
+        <div className="rounded-b-lg border-1 border-neutral-100 transition hover:border-gray-900">
           <Controller
             name="group"
             control={control}

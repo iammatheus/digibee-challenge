@@ -5,7 +5,7 @@ import tagMock from '../../../assets/tag-mock.svg'
 import { IItemsMockResponses } from '@/api/interfaces/IMockResponses'
 import { Check } from 'iconoir-react'
 import clsx from 'clsx'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StepSekeleton } from './StepSkeleton'
 
 type StepDrawerRadioListProps = RadioGroupProps & {
