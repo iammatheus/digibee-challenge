@@ -29,7 +29,9 @@ Desenvolver um componente utilizando drawer com dois níveis, que funcionará co
 - Execute **npm install** para instalar as dependencias
 - Crie na pasta **src/api/db** um arquivo chamado **db.json** utilizando o exemplo
 - Crie um arquivo na raíz do projeto chamado **.env.local** de acordo com **.env.example**
-- Fluxo:
+  - VITE_API_URL="http://localhost:3000/" - URL do json-server/api. Altere a porta, caso necessário
+  - VITE_ENABLE_API_DELAY="true" - Define se as consultas terão um delay ou não (true/false)
+- Resumo:
   - **npm install**
   - **src/api/db/db.json**
   - **.env.local**
