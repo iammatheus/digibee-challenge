@@ -32,7 +32,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
       <StepDrawer.Content>
         <StepDrawer.Header
           title="Mock Response"
-          description="Choose a connector to simulate the response."
+          description="You can choose a connector to simulate the response."
           onBack={handleClose}
         />
 
@@ -42,10 +42,12 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
             onSelectionChange={handleSelectChange}
             placeholder="Choose a step to mock..."
           >
-            <></>
+            <>
+              <p>teste</p>
+            </>
           </StepDrawer.Select>
 
-          <Divider className="absolute left-0 top-[265px] w-[100%]" />
+          <Divider className="absolute top-[265px] left-0 w-[100%]" />
 
           <StepDrawer.RadioList
             steps={stepMockResponse?.items}
@@ -62,7 +64,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
 
         <StepDrawer.Footer className="flex items-center justify-center">
           <Button
-            className={`w-[100%] max-w-[400px] rounded-md border-1 font-semibold ${
+            className={`w-[100%] max-w-[400px] rounded-md border-1 ${
               stepId ? 'border-gray-900' : 'cursor-not-allowed border-gray-300'
             }`}
             variant="bordered"
@@ -70,7 +72,7 @@ export function StepMockResponses({ step }: TestCaseStepProps) {
             onPress={handleApply}
             isDisabled={!stepId}
           >
-            Apply
+            <span className="font-semibold">Apply</span>
           </Button>
         </StepDrawer.Footer>
       </StepDrawer.Content>

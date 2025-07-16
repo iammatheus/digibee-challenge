@@ -5,7 +5,7 @@ import tagMock from '../../../assets/tag-mock.svg'
 import { IItemsMockResponses } from '@/api/interfaces/IMockResponses'
 import { Check } from 'iconoir-react'
 import clsx from 'clsx'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StepSekeleton } from './StepSkeleton'
 
 type StepDrawerRadioListProps = RadioGroupProps & {
@@ -50,9 +50,9 @@ export function StepDrawerRadioList({
               key={step.id}
             >
               {isStepAlreadySelected && (
-                <span className="absolute right-4 top-5 z-10 flex items-center justify-end rounded-md bg-neutral-100 p-1 text-xs">
+                <span className="absolute top-5 right-4 z-10 flex items-center justify-end rounded-md bg-neutral-100 p-1 text-xs">
                   <Check />
-                  selected item
+                  selected
                 </span>
               )}
               <div className="bg-neutral- ml-4 flex h-[32px] w-[32px] items-center justify-center rounded-md bg-neutral-50 p-2">
@@ -68,15 +68,10 @@ export function StepDrawerRadioList({
                   description={step.date}
                   value={step.id}
                   key={step.id}
-                  className="w-[100%] border-0 hover:bg-transparent"
-                  classNames={{
-                    control:
-                      'w-5 h-5 border-2 border-gray-300 rounded-full transition-colors ' +
-                      'data-[selected=true]:bg-pink-600 data-[selected=true]:border-pink-600',
-                  }}
+                  className="w-[100%] border-0 font-[500] hover:bg-transparent"
                 >
                   {step.name}{' '}
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs font-normal text-gray-400">
                     ({step.quantity})
                   </span>
                 </BoxRadioForm>

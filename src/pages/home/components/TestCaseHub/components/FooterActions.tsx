@@ -14,9 +14,8 @@ export function FooterActions({ isDisabled, isSubmitting, onCancel }: Props) {
         variant="light"
         aria-label="cancel"
         onPress={onCancel}
-        className="font-semibold"
       >
-        Cancel
+        <span className="font-semibold">Cancel</span>
       </Button>
 
       <Button
@@ -24,11 +23,11 @@ export function FooterActions({ isDisabled, isSubmitting, onCancel }: Props) {
         variant="bordered"
         aria-label="submit"
         type="submit"
-        className={`border-1 font-semibold ${isDisabled ? 'cursor-not-allowed border-gray-300' : 'border-gray-900'}`}
+        className={`border-1 ${isDisabled ? 'cursor-not-allowed border-gray-300' : 'border-gray-900'}`}
         isLoading={isSubmitting}
         isDisabled={isDisabled}
       >
-        Save
+        <span className="font-semibold">Save</span>
       </Button>
     </div>
   )
