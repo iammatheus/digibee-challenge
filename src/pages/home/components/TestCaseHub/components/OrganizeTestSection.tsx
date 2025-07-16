@@ -16,8 +16,8 @@ export function OrganizeTestSection({ control }: Props) {
         </h2>
       </header>
 
-      <div className="overflow-hidden rounded-lg border-1 border-neutral-200">
-        <div className="rounded-t-lg border-1 border-neutral-100 p-0 transition hover:border-gray-900">
+      <div className="overflow-hidden rounded-lg">
+        <div className="rounded-t-lg border-1 border-neutral-200 p-0 transition hover:border-gray-900">
           <Controller
             name="name"
             control={control}
@@ -34,7 +34,7 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="border-b-none border-1 border-neutral-100 p-0 transition hover:border-gray-900">
+        <div className="border-b-none border-1 border-neutral-200 border-t-white p-0 transition hover:border-gray-900">
           <Controller
             name="description"
             control={control}
@@ -51,7 +51,7 @@ export function OrganizeTestSection({ control }: Props) {
           />
         </div>
 
-        <div className="rounded-b-lg border-1 border-neutral-100 transition hover:border-gray-900">
+        <div className="rounded-b-lg border-1 border-neutral-200 border-t-white transition hover:border-gray-900">
           <Controller
             name="group"
             control={control}
@@ -59,6 +59,9 @@ export function OrganizeTestSection({ control }: Props) {
               <Select
                 label="Group"
                 placeholder="Add your test to a group"
+                classNames={{
+                  trigger: 'cursor-pointer',
+                }}
                 {...field}
               >
                 <SelectItem key="group1">Group 1</SelectItem>

@@ -12,23 +12,5 @@ export default {
   theme: {
     extend: {},
   },
-  darkMode: 'class',
-  plugins: [
-    heroui({
-      layout: {
-        dividerWeight: '1px',
-        disabledOpacity: '0.5', // opacity-[0.3]
-        radius: {
-          small: '4px', // rounded-small
-          medium: '6px', // rounded-medium
-          large: '8px', // rounded-large
-        },
-        borderWidth: {
-          small: '1.5px', // border-small
-          medium: '1.5px', // border-medium
-          large: '3px', // border-large
-        },
-      },
-    }),
-  ],
+  plugins: [heroui()],
 }

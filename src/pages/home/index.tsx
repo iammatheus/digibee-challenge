@@ -10,10 +10,10 @@ export function Home() {
         <Button
           onPress={hub.onOpen}
           variant="bordered"
-          className="border-2 border-gray-900 font-semibold"
+          className="border-2 border-gray-900"
           size="lg"
         >
-          Open drawer
+          <span className="font-semibold">Open drawer</span>
         </Button>
         <TestCaseHub
           hub={hub}
