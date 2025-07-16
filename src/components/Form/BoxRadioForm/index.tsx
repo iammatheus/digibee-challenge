@@ -13,6 +13,7 @@ export function BoxRadioForm({ children, ...props }: RadioProps) {
           'group-data-[selected=true]:bg-gray-900',
           'outline outline-1',
         ),
+        description: 'text-small font-normal',
       }}
     >
       {children}

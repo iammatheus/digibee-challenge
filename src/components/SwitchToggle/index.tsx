@@ -14,7 +14,7 @@ export function SwitchToggle({
       <h3 className="text-xs font-semibold text-gray-900">
         {toggleLabel}{' '}
         {quantitySteps && (
-          <span className="font-normal tracking-[0.4px] text-gray-500">
+          <span className="font-normal tracking-tighter text-gray-500">
             ({quantitySteps} steps)
           </span>
         )}

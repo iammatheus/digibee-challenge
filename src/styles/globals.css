@@ -1,12 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@config "../../tailwind.config.js";
 
 body {
   -webkit-font-smoothing: antialised;
@@ -17,7 +11,7 @@ input,
 textarea,
 button {
   font:
-    400 1rem 'DM Sans',
+    400 0.875rem 'DM Sans',
     sans-serif;
 }
 
